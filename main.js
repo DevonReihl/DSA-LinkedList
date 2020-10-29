@@ -12,7 +12,7 @@ class LinkedList {
   } 
 
   insertFirst(item) {
-    this.head = new _Node (item, this.head);
+    this.head = new _Node(item, this.head);
     this.size++;
   }
 
@@ -68,20 +68,22 @@ class LinkedList {
       return
     }
 
-    if (index === 0) {
-      this.head = new _Node (value, this.head);
-      return
-    }
-
-    // else {
-    //   let newNode = this.head;
-    //   let nextNode = newNode.next;
-    //   while (newNode.value !== key) {
-    //     newNode = newNode.next;
-    //     nextNode = newNode.next;
-    //   }
-    //   newNode.next = new _Node(value, nextNode)
+    // if (index === 0) {
+    //   this.head = new _Node (value, this.head);
+    //   return
     // }
+
+    else {
+      let prevNode = this.head;
+      let newNode = this.head;
+      while ((newNode !== null) && index -1 > 0) {
+        prevNode = newNode;
+        newNode = newNode.next;
+        index--;
+      }
+      prevNode.next = new _Node(value, newNode);
+      this.size++;
+    }
   }
 
   find(item) {
@@ -116,8 +118,10 @@ class LinkedList {
     //If the node to be removed is head, make the next node head
     if (this.head.value === item) {
       this.head = this.head.next;
+      this.size--;
       return;
     }
+
     //Start at the head
     let currNode = this.head;
     //Keep track of previous
@@ -133,12 +137,32 @@ class LinkedList {
       console.log('Item not found');
       return;
     }
+    this.size--;
     previousNode.next = currNode.next;
+    
   }
   
-
-
+ 
 } 
+
+function display(list) {
+  let curr = list.head;
+  let str = '';
+
+  while (curr !== null) {
+    str += curr.value + ", ";
+    curr = curr.next;
+  }
+  return str
+}
+
+function isEmpty(list) {
+  return !list.head || list.length === 0;
+}
+
+function listSize(list) {
+    return list.size 
+}
 
 function main() {
   const SLL = new LinkedList();
@@ -149,12 +173,16 @@ function main() {
   SLL.insertLast("Husker");
   SLL.insertLast("Starbuck");
   SLL.insertFirst("Tauhida");
-  SLL.insertBefore('Athena', 'Boomer')
-  SLL.insertAfter('Hotdog', 'Helo')
+  SLL.insertBefore('Athena', 'Boomer');
+  SLL.insertAfter('Hotdog', 'Helo');
+  SLL.insertAt('Kat', 3);
 
-  // SLL.remove('Tauhida')
+  SLL.remove('Tauhida')
 
-  console.log(SLL);
+  console.log(display(SLL));
+  console.log(listSize(SLL));
+  console.log(isEmpty(SLL));
+  
 }
 
 main();
