@@ -140,10 +140,14 @@ class LinkedList {
     this.size--;
     previousNode.next = currNode.next;
     
-  }
-  
+  } 
  
 } 
+
+function deleteList(list) {
+  list.head = null;
+  list.size = 0;
+}
 
 function display(list) {
   let curr = list.head;
@@ -164,6 +168,52 @@ function listSize(list) {
     return list.size 
 }
 
+function findPrevious(list, previousItem) {
+    let prevNode = list.head;
+    let tempNode = list.head;
+    while (tempNode.value !== previousItem) {
+      prevNode = tempNode;
+      tempNode = tempNode.next;
+    }
+    return prevNode;
+}
+
+function findLast(list) {
+  let lastNode = list.head;
+
+  while(lastNode.next) {
+    lastNode = lastNode.next;
+  }
+  return lastNode;
+}
+
+function reverse(list) {
+  let curr = list.head;
+  let prev = null;
+  next = null;
+
+  while (curr) {
+    next = curr.next;
+    curr.next = prev;
+    prev = curr;
+    curr = next;
+  }
+  list.head = prev;
+  return list;
+}
+
+function thirdFromEnd(list) {
+  let nodes = [list.head];
+
+}
+
+function middleNode(list) {
+  let middle = [list.head];
+  while (middle[middle.length - 1].next != null)
+      middle.push(middle[middle.length - 1].next);
+  return middle[Math.trunc(middle.length / 2)];
+};
+
 function main() {
   const SLL = new LinkedList();
 
@@ -181,8 +231,15 @@ function main() {
 
   console.log(display(SLL));
   console.log(listSize(SLL));
-  console.log(isEmpty(SLL));
-  
+  console.log(deleteList(SLL));
+  // console.log(display(SLL));
+  // console.log(listSize(SLL));
+  // console.log(isEmpty(SLL));
+  // console.log(findPrevious(SLL, "Hotdog"));
+  // console.log(findLast(SLL));
+  // console.log(reverse(SLL));
+  // console.log(display(SLL));
+  console.log(middleNode(SLL))
 }
 
 main();
