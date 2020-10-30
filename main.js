@@ -140,9 +140,12 @@ class LinkedList {
     this.size--;
     previousNode.next = currNode.next;
     
-  } 
+  }
+  
+  
  
 } 
+
 
 function deleteList(list) {
   list.head = null;
@@ -204,7 +207,10 @@ function reverse(list) {
 
 function thirdFromEnd(list) {
   let nodes = [list.head];
-
+  while(nodes[nodes.length -1].next != null)
+    nodes.push(nodes[nodes.length -1].next);
+    console.log(nodes.length)
+  return nodes[]
 }
 
 function middleNode(list) {
@@ -231,7 +237,7 @@ function main() {
 
   console.log(display(SLL));
   console.log(listSize(SLL));
-  console.log(deleteList(SLL));
+  // console.log(deleteList(SLL));
   // console.log(display(SLL));
   // console.log(listSize(SLL));
   // console.log(isEmpty(SLL));
@@ -239,7 +245,8 @@ function main() {
   // console.log(findLast(SLL));
   // console.log(reverse(SLL));
   // console.log(display(SLL));
-  console.log(middleNode(SLL))
+  // console.log(middleNode(SLL))
+  console.log(thirdFromEnd(SLL));
 }
 
 main();
